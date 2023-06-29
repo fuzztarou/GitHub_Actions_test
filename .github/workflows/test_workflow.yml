@@ -1,0 +1,35 @@
+name: Workflow test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - /**
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "write"
+      id-token: "write"
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # migration/に変更があるかどうかをtrue/falseで次のstepに渡す
+      - name: add a new file
+        run: touch "$(date +%Y-%m-%d)".txt
+
+      - name: Commit/Push
+        run: |
+          git config user.name actions-user
+          git config user.email action@github.com
+          if (git diff --shortstat | grep '[0-9]'); then
+            git add -A
+            git commit -m "[test] file generater by GitHub Actions"
+            git push origin HEAD:${GITHUB_REF}
+          fi
