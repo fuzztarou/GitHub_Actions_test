@@ -27,6 +27,7 @@ jobs:
           git config user.name actions-user
           git config user.email action@github.com
           if (git diff --shortstat | grep '[0-9]'); then
+            git diff --shortstat
             git add -A
             git commit -m "[test] file generater by GitHub Actions"
             git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
