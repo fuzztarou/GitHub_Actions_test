@@ -29,5 +29,5 @@ jobs:
           if (git diff --shortstat | grep '[0-9]'); then
             git add -A
             git commit -m "[test] file generater by GitHub Actions"
-            git push origin HEAD:${GITHUB_REF}
+            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
           fi
