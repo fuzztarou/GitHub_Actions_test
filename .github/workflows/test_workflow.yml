@@ -26,8 +26,7 @@ jobs:
           git config user.name fuzztarou
           git config user.email fuzztarou@gmail.com
           if (git diff --shortstat | grep '[0-9]'); then
-            git diff --shortstat
             git add -A
             git commit -m "[test] file generater by GitHub Actions"
-            git push origin HEAD:${{ github.ref }}
+            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
           fi
