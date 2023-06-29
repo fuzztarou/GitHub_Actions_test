@@ -29,5 +29,5 @@ jobs:
             git diff --shortstat
             git add -A
             git commit -m "[test] file generater by GitHub Actions"
-            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
+            git push origin HEAD:main
           fi
