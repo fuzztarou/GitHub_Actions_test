@@ -19,7 +19,7 @@ jobs:
           ref: main
 
       - name: add a new file
-        run: touch "$(date +%Y-%m-%d)".txt
+        run: touch "$(date +%Y-%m-%d-%H-%M-%S)".txt
 
       - name: Verify changes
         run: git status
