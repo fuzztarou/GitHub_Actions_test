@@ -16,9 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # migration/に変更があるかどうかをtrue/falseで次のstepに渡す
       - name: add a new file
         run: touch "$(date +%Y-%m-%d)".txt
 
