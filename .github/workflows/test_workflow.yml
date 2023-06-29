@@ -13,7 +13,7 @@ jobs:
       id-token: "write"
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -23,11 +23,11 @@ jobs:
 
       - name: Commit/Push
         run: |
-          git config user.name actions-user
-          git config user.email action@github.com
+          git config user.name fuzztarou
+          git config user.email fuzztarou@gmail.com
           if (git diff --shortstat | grep '[0-9]'); then
             git diff --shortstat
             git add -A
             git commit -m "[test] file generater by GitHub Actions"
-            git push origin HEAD:main
+            git push origin HEAD:${{ github.ref }}
           fi
